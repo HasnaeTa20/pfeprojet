@@ -143,11 +143,12 @@ class UserController extends GetxController{
   }
 
 void onTextChanged(String text){
-    searchList.add(getUser());
+    searchList.clear();
     if(text.isEmpty){
-      users.forEach((element) {
-        searchList.add(element);
-      });
+      getUser();
+      // users.forEach((element) {
+      //   searchList.add(element);
+      // });
     }
     else{
       users.forEach((element) {

@@ -170,10 +170,9 @@ void onTextChanged(String text){
   
     
   // }
-cancel(){
-  Get.back();
-  getUser();
-}
+// cancel(){
+ 
+// }
   // showvalues(User user){
   //   nomtext.text= user.nom!;
   //   prenomtext.text=user.prenom!;
@@ -198,6 +197,11 @@ cancel(){
       Aclear();
     getUser();
       
+  }
+
+  void cancel() {
+     Get.back();
+  getUser();
   }
 }
 

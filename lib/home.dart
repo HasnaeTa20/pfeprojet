@@ -121,10 +121,12 @@ class _CreationArtState extends State<CreationArt> {
             ),
           ),
            TitleSelect(),
-         TextField(
+           Obx((){
+            return TextField(
                           controller: controller,
                           decoration: InputDecoration(
                               hintText: "Enter something to filter"),
+
                           onChanged: (value) {
                             debouncer.run((){
                                setState(() {
@@ -135,8 +137,11 @@ class _CreationArtState extends State<CreationArt> {
                             });
                            
                             }
-                            ),
+                            );
           
+
+           }),
+         
            Expanded(
           
              child: Obx(() {

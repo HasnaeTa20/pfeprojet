@@ -137,6 +137,7 @@ class UserController extends GetxController{
     }
     update();
   }
+  
   @override
   void initState() {
   users;

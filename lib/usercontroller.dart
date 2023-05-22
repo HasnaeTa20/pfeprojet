@@ -127,17 +127,17 @@ class UserController extends GetxController{
   onsortColum(int columnIndex, bool ascending) {
     if (columnIndex == 0) {
       if (ascending) {
-        users.sort(((a, b) =>a.nom!.compareTo(b.nom!) ));
+        searchList.sort(((a, b) =>a.nom!.compareTo(b.nom!) ));
         
       } else {
       
-        users.sort(((a, b) => b.nom!.compareTo(a.nom!)));
+       searchList.sort(((a, b) => b.nom!.compareTo(a.nom!)));
       }
        
     }
     update();
   }
-  
+
   @override
   void initState() {
   users;

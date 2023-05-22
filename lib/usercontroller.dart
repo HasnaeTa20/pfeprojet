@@ -61,8 +61,7 @@ class UserController extends GetxController{
         if(data!= null){
           users.value = data;
          
-          // filteruser. = data;
-          // myData= users.value;
+          
          
         }
       }

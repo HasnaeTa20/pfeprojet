@@ -60,8 +60,7 @@ class UserController extends GetxController{
           jsonDecode(result.body).map((e)=>User.fromJson(e))).toList();
         if(data!= null){
           users.value = data;
-         
-          
+          // searchList.value=data;
          
         }
       }
@@ -70,6 +69,7 @@ class UserController extends GetxController{
       Get.snackbar("error", "$e");
 
     }
+     update();
  }
  updateUser( id)async{
 
@@ -180,11 +180,7 @@ void onTextChanged(String text){
   // }
 
 
-      @override
-  void onInit() {
-    getUser();
-    super.onInit();
-  }
+
 
 }
 
@@ -202,6 +198,11 @@ void onTextChanged(String text){
   void cancel() {
      Get.back();
   getUser();
+  }
+        @override
+  void onInit() {
+    getUser();
+    super.onInit();
   }
 }
 

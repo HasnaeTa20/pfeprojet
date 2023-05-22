@@ -11,8 +11,6 @@ import 'package:flutter_application/user.dart';
 import 'package:flutter_application/usercontroller.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
-import 'dart:async';
 
 
 class CreationArt extends StatefulWidget {
@@ -23,35 +21,15 @@ class CreationArt extends StatefulWidget {
   @override
   State<CreationArt> createState() => _CreationArtState();
 }
-class Debouncer{
-  final int millseconds;
-  VoidCallback? action;
-  Timer? timer;
-
-  Debouncer({required this.millseconds,
-  //  required this.action,required this.timer
-   });
-  run (VoidCallback action){
-    if(null!=timer){
-      timer!.cancel();// when the user is continuosly typing, this cancels the timer
-    }
-    //then we will start  a new timer looking for the user to stop
-  }
-    
-  }
 
 class _CreationArtState extends State<CreationArt> {
   var formKey=GlobalKey<FormState>();
   final contr = Get.put(UserController());
  
   bool sort = true;
-
+  // var filteruser = <User>[] as RxList ;
   var isObscure=true.obs;
-  TextEditingController controller = TextEditingController();
-  //this will wait for 500 milliseconds after the user has stopped typing 
-  
-  final debouncer = Debouncer(millseconds: 500);
-  
+  TextEditingController controller = TextEditingController(); 
 
 
 
@@ -121,31 +99,26 @@ class _CreationArtState extends State<CreationArt> {
             ),
           ),
            TitleSelect(),
-           Obx((){
-            return TextField(
+         TextField(
                           controller: controller,
                           decoration: InputDecoration(
                               hintText: "Enter something to filter"),
-
-                          onChanged: (value) {
-                            debouncer.run((){
-                               setState(() {
-                              // contr.users = users!.where((element) =>element.nom!.contains(value)) .toList();
-                            contr.filteruser = contr.users.where((u) => (u.nom!.toLowerCase().contains(value)||u.prenom!.toLowerCase().contains(value))).toList();
-                            });
-
-                            });
-                           
-                            }
-                            );
+                          // onChanged: (value) {
+                          //   setState(() {
+                          //  contr.users.where(((p0) => p0.nom!.contains(value)));
+                          //   //  where((element) =>element.nom!.contains(value));
+                          //   });}
+                            onChanged: (value){
+                        contr.onTextChanged(value);
+                    },
+                            
+                            
+                            ),
           
-
-           }),
-         
            Expanded(
           
              child: Obx(() {
-            final user= contr.filteruser;
+            final user= contr.users;
            
          
       

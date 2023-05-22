@@ -9,7 +9,8 @@ import 'package:http/http.dart' as http;
 class UserController extends GetxController{
   //step 1 create instance
   var users = <User>[].obs;
-   var filteruser = <User>[];
+    var searchList = <User>[].obs;
+
   
   TextEditingController nomtext=TextEditingController();
   TextEditingController prenomtext=TextEditingController();
@@ -40,7 +41,8 @@ class UserController extends GetxController{
       var result = jsonDecode(res.body);
       
       Get.snackbar("post" , "succefully");
-         clear();
+       Aclear();
+    
       await getUser();
     }
     }catch(e){
@@ -58,7 +60,7 @@ class UserController extends GetxController{
           jsonDecode(result.body).map((e)=>User.fromJson(e))).toList();
         if(data!= null){
           users.value = data;
-          filteruser = data;
+          // filteruser. = data;
           // myData= users.value;
          
         }
@@ -134,39 +136,40 @@ class UserController extends GetxController{
        
     }
   }
-
   @override
   void initState() {
   users;
-  
   }
 
+void onTextChanged(String text){
+    searchList.clear();
+    if(text.isEmpty){
+      users.forEach((element) {
+        searchList.add(element);
+      });
+    }
+    else{
+      users.forEach((element) {
+        if(element.nom!.toLowerCase().contains(text))
+          {
+            searchList.add(element);
+          }
+      });
+    }
 
-
-
-
-
-
-
-
-
-
-  clear(){
-    nomtext.clear();
-    prenomtext.clear();
+  //  Aclear(){
   
-  }
+  
+  // }
    eclear(){
     editnomtext.clear();
     editprenomtext.clear();
   
   } 
-  Annuler(){
-    clear();
-      getUser();
-      
+  // Annuler(){
+  
     
-  }
+  // }
 cancel(){
   Get.back();
   getUser();
@@ -185,6 +188,20 @@ cancel(){
   }
 
 }
+
+  void Aclear() {
+      nomtext.clear();
+    prenomtext.clear();
+  }
+
+  void Annuler() {
+      Aclear();
+    getUser();
+      
+  }
+}
+
+
 
 
 

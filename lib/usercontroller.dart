@@ -60,6 +60,7 @@ class UserController extends GetxController{
           jsonDecode(result.body).map((e)=>User.fromJson(e))).toList();
         if(data!= null){
           users.value = data;
+          searchList.value=data;
           // filteruser. = data;
           // myData= users.value;
          

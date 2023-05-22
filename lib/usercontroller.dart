@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 class UserController extends GetxController{
   //step 1 create instance
   var users = <User>[].obs;
+  var myData;
+    bool sort = true;
   TextEditingController nomtext=TextEditingController();
   TextEditingController prenomtext=TextEditingController();
 
@@ -56,6 +58,7 @@ class UserController extends GetxController{
           jsonDecode(result.body).map((e)=>User.fromJson(e))).toList();
         if(data!= null){
           users.value = data;
+          myData= users.value;
          
         }
       }
@@ -117,6 +120,31 @@ class UserController extends GetxController{
   update();
 
  }
+ 
+  onsortColum(int columnIndex, bool ascending) {
+    if (columnIndex == 0) {
+      if (ascending) {
+        myData!.sort((a, b) => a.nom!.compareTo(b.nom!));
+      } else {
+        myData!.sort((a, b) => b.nom!.compareTo(a.nom!));
+      }
+    }
+  }
+
+  @override
+  void initState() {
+   myData = users;
+  
+  }
+
+
+
+
+
+
+
+
+
 
 
   clear(){

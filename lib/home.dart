@@ -25,17 +25,15 @@ class CreationArt extends StatefulWidget {
 class _CreationArtState extends State<CreationArt> {
   var formKey=GlobalKey<FormState>();
   final contr = Get.put(UserController());
-  // final contoller = Get.find<UserController>();
+ 
 
   var isObscure=true.obs;
+  TextEditingController controller = TextEditingController(); 
 
 
-  // setValues() {
-  
-  //   setState(() {
-  //     select = true;
-  //   });
-  // }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +52,17 @@ class _CreationArtState extends State<CreationArt> {
               
               TextButton(onPressed: ()async{await contr.addUser();}, child: Text('Enregistrer')),
               TextButton(onPressed: ()async{contr.Annuler();}, child: Text('Annuler')),
+
+               
+
+
+
+
+
+
+
+
+              
 
             ],),
           
@@ -89,7 +98,14 @@ class _CreationArtState extends State<CreationArt> {
             ),
           ),
            TitleSelect(),
-         
+         TextField(
+                          controller: controller,
+                          decoration: InputDecoration(
+                              hintText: "Enter something to filter"),
+                          onChanged: (value) {
+                            setState(() {
+                             contr.myData = contr.myData!.where((element) =>element.nom!.contains(value)) .toList();
+                            });}),
           
            Expanded(
           
@@ -107,12 +123,12 @@ class _CreationArtState extends State<CreationArt> {
         
         child:
            Padding(
-             padding: const EdgeInsets.fromLTRB(50, 50, 50, 100),
+             padding:  EdgeInsets.fromLTRB(50, 50, 50, 100),
              child: DataTable(   
                columnSpacing: 150,
                     //  horizontalMargin: 12,
                     
-                     border: const TableBorder(
+                     border:  TableBorder(
                      top: BorderSide(width: 2, color: Color.fromARGB(255, 128, 165, 210)),
                      bottom: BorderSide(width: 2, color:Color.fromARGB(255, 128, 165, 210)),
                      verticalInside: BorderSide(width: 2,color: Color.fromARGB(255, 128, 165, 210)),
@@ -120,7 +136,7 @@ class _CreationArtState extends State<CreationArt> {
                      left: BorderSide(width:2, color: Color.fromARGB(255, 128, 165, 210)),
                      ),
               
-                     columns: const [
+                     columns:  [
               DataColumn(
                   label: Text("Nom",
                   style: TextStyle(
@@ -130,6 +146,13 @@ class _CreationArtState extends State<CreationArt> {
                   ),
                   textAlign: TextAlign.center,
                   ),
+                   onSort: (columnIndex, ascending){
+                    setState(() {
+                               contr.sort = contr.sort!;
+                              });
+                            contr.onsortColum(columnIndex, ascending);
+
+                   }
                   ),
                   DataColumn(
                   label: Text("Prenom",

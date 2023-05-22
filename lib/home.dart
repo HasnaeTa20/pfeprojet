@@ -26,6 +26,7 @@ class _CreationArtState extends State<CreationArt> {
   var formKey=GlobalKey<FormState>();
   final contr = Get.put(UserController());
  
+  bool sort = true;
 
   var isObscure=true.obs;
   TextEditingController controller = TextEditingController(); 
@@ -104,7 +105,7 @@ class _CreationArtState extends State<CreationArt> {
                               hintText: "Enter something to filter"),
                           onChanged: (value) {
                             setState(() {
-                             contr.myData = contr.myData!.where((element) =>element.nom!.contains(value)) .toList();
+                            //  contr.users = contr.users!.where((element) =>element.nom!.contains(value)) .toList();
                             });}),
           
            Expanded(
@@ -146,9 +147,10 @@ class _CreationArtState extends State<CreationArt> {
                   ),
                   textAlign: TextAlign.center,
                   ),
-                   onSort: (columnIndex, ascending){
+                   onSort: (int columnIndex,bool ascending){
                     setState(() {
-                               contr.sort = contr.sort!;
+
+                               sort = sort;
                               });
                             contr.onsortColum(columnIndex, ascending);
 

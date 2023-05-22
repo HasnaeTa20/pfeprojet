@@ -118,7 +118,7 @@ class _CreationArtState extends State<CreationArt> {
            Expanded(
           
              child: Obx(() {
-            final user= contr.users;
+            final user= contr.searchList;
            
          
       

@@ -128,13 +128,14 @@ class UserController extends GetxController{
     if (columnIndex == 0) {
       if (ascending) {
         users.sort(((a, b) =>a.nom!.compareTo(b.nom!) ));
-        // myData.sort((a, b) => a.nom.compareTo(b.nom));
+        
       } else {
-        // myData.sort((a, b) => b.nom.compareTo(a.nom));
+      
         users.sort(((a, b) => b.nom!.compareTo(a.nom!)));
       }
        
     }
+    update();
   }
   @override
   void initState() {
@@ -157,28 +158,12 @@ void onTextChanged(String text){
       });
     }
 
-  //  Aclear(){
   
-  
-  // }
    eclear(){
     editnomtext.clear();
     editprenomtext.clear();
   
   } 
-  // Annuler(){
-  
-    
-  // }
-// cancel(){
- 
-// }
-  // showvalues(User user){
-  //   nomtext.text= user.nom!;
-  //   prenomtext.text=user.prenom!;
-
-  // }
-
 
 
 
@@ -212,50 +197,3 @@ void onTextChanged(String text){
 
 
 
-
-// updateUser(int i)async{
-//   // Uri url3=Uri.parse("${upArtiste}/$i");
-//   Uri url3=Uri.parse("${API.upArtiste}/$i");
-//   final data = User(
-//     id:i,
-//     nom: editnomtext.text,
-//     prenom: editprenomtext.text,
-
-//   );
-//   try{
-//     var resultat = await http.post(url3,
-//     body: jsonEncode(data.toJson()));
-//     if(resultat.statusCode==200){
-//         Get.back();
-//         await getUser();
-
-//       //  var rslt=jsonDecode(resultat.body);
-
-//        Get.snackbar("success", "update"); 
-       
-//     }
-
-//   }catch(e){
-//     Get.snackbar("error", "$e");
-//   }
-//  }
-
-
-
-
-
-
-
-
-
-//  deleteUser(String i)async{
-//   Uri url4=Uri.parse("${API.deArtiste}/$i");
-//   var res =await http.delete(url4);
-//   if(res.statusCode==200){
-//     await getUser();
-//     Get.snackbar("delete", "success");
-
-
-//   }
-
-//  }

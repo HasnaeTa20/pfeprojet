@@ -11,6 +11,8 @@ import 'package:flutter_application/user.dart';
 import 'package:flutter_application/usercontroller.dart';
 
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
+import 'dart:async';
 
 
 class CreationArt extends StatefulWidget {
@@ -21,6 +23,22 @@ class CreationArt extends StatefulWidget {
   @override
   State<CreationArt> createState() => _CreationArtState();
 }
+class Debouncer{
+  final int millseconds;
+  VoidCallback? action;
+  Timer? timer;
+
+  Debouncer({required this.millseconds,
+  //  required this.action,required this.timer
+   });
+  run (VoidCallback action){
+    if(null!=timer){
+      timer!.cancel();// when the user is continuosly typing, this cancels the timer
+    }
+    //then we will start  a new timer looking for the user to stop
+  }
+    
+  }
 
 class _CreationArtState extends State<CreationArt> {
   var formKey=GlobalKey<FormState>();
@@ -29,7 +47,11 @@ class _CreationArtState extends State<CreationArt> {
   bool sort = true;
 
   var isObscure=true.obs;
-  TextEditingController controller = TextEditingController(); 
+  TextEditingController controller = TextEditingController();
+  //this will wait for 500 milliseconds after the user has stopped typing 
+  
+  final debouncer = Debouncer(millseconds: 500);
+  
 
 
 
@@ -104,14 +126,21 @@ class _CreationArtState extends State<CreationArt> {
                           decoration: InputDecoration(
                               hintText: "Enter something to filter"),
                           onChanged: (value) {
-                            setState(() {
-                            //  contr.users = contr.users!.where((element) =>element.nom!.contains(value)) .toList();
-                            });}),
+                            debouncer.run((){
+                               setState(() {
+                              // contr.users = users!.where((element) =>element.nom!.contains(value)) .toList();
+                            contr.filteruser = contr.users.where((u) => (u.nom!.toLowerCase().contains(value)||u.prenom!.toLowerCase().contains(value))).toList();
+                            });
+
+                            });
+                           
+                            }
+                            ),
           
            Expanded(
           
              child: Obx(() {
-            final user= contr.users;
+            final user= contr.filteruser;
            
          
       

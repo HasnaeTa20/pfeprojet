@@ -1,50 +1,75 @@
+// class User {
+//   //step 1 create data types variabale
+ 
+//   String? nom,prenom;
+//    int? id;
+// //step 2 create constructor
+//  User({
+//   this.nom,
+//   this.prenom,
+//   this.id}
+//  );
+//  //step 3 create from json methode
+
+//  factory User.fromJson(Map <String, dynamic> json) {
+//   return User(
+//   // int.parse(json['id']),
+//   // json['nom'],
+//   // json['prenom'],
+  
+//   nom:json["nom"],
+//   prenom:json["prenom"],
+//   id:json["id"]
+//   );
+//  }
+
+
+//   Map <String,dynamic> toJson(){
+//    return {
+//   // "id":id.toString(),
+ 
+//            "nom":nom,
+//           "prenom":prenom,
+//           "id":id
+ 
+// };
+
+//   } 
+ 
+// }
+
+
+
+
 
 
 class User {
-  int? iduser;
+  int? id;
   String? nom;
   String? prenom;
-  String? username;
-  String? email;
-  String? password;
-  String? role;
-  String? status;
- 
 
-
-  User({this.iduser, this.nom, this.prenom,this.username,this.email,this.password,this.role,this.status});
+  User({this.id, this.nom, this.prenom});
 
   User.fromJson(Map<String, dynamic> json) {
-    iduser = int.parse(json['iduser']);
+    id = int.parse(json['id']);
     nom = json['nom'];
     prenom = json['prenom'];
-    username = json['username'];
-    email = json['email'];
-    password = json['password'];
-    role = json['role'];
-    status = json['status'];
   }
 
+  // Map<String, dynamic> toJson() {
+  //   // final Map<String, dynamic> data = new Map<String, dynamic>();
+  //   data["id"] = this.id;
+  //   data["nom"] = this.nom;
+  //   data["prenom"] = this.prenom;
+  //   return data;
+  // }
   Map <String,dynamic> toJson(){
    return {
-    "iduser":iduser.toString(),
-    "nom":nom,
-    "prenom":prenom,
-    "username":username,
-    "email":email,
-    "password":password,
-    "role":role,
-    "status":status,
-       
+    "id":id.toString(),
+           "nom":nom,
+          "prenom":prenom,
+         // "id":id
  
 };
 }
 }
-
-
-
-
-
-
-
-

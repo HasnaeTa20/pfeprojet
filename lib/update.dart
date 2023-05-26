@@ -65,7 +65,7 @@ class UpdateUseer extends StatelessWidget {
                                                                            child: InkWell(
                                                                                                                    onTap: ()async{
                                                                                                                      
-                                                                                                                     contoller.updateUser(user.iduser!);
+                                                                                                                     contoller.updateUser(user.id!);
                                                                                                                    },
                                                                                                                    child: Container(
                                                                                                                      decoration: BoxDecoration(color:Color.fromARGB(255, 65, 255, 7),

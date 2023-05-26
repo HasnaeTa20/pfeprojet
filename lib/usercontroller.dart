@@ -75,9 +75,9 @@ class UserController extends GetxController{
 
   Uri url3=Uri.parse("${API.upArtiste}/$id");
   final data = User(
-    iduser:id,
-   role: editnomtext.text,
-   status: editprenomtext.text,
+    id:id,
+  nom: editnomtext.text,
+  prenom: editprenomtext.text,
    
   );
  try{

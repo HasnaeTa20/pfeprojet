@@ -11,6 +11,14 @@ class API {
  static const getArtiste = "$hostapicrud /getall.php ";
   static const upArtiste = "$hostapicrud /update.php";
  static const deArtiste = "$hostapicrud /delete.php";
+
+ 
+static const hostConnection = "http://localhost/api_corpus"; 
+static const hostConnectionuser = "$hostConnection/user"; 
+ static const getall = "$hostConnectionuser/getall.php";
+static const updateuser = "$hostConnectionuser/update.php";
+static const deleteuser = "$hostConnectionuser/delete.php";
+
  
 //  static updateArtiste (String nom, String prenom) async {
 //       final response = await http.post(Uri.parse(API.upArtiste),

@@ -118,7 +118,7 @@ class _CreationArtState extends State<CreationArt> {
            Expanded(
           
              child: Obx(() {
-            final user= contr.searchList;
+            final user= contr.users;
            
          
       
@@ -196,7 +196,7 @@ class _CreationArtState extends State<CreationArt> {
                     
                     DataCell(
                      
-                       Text(user.nom!),
+                       Text(user.role!),
                       //  onTap: () {
                         //  contr.editnomtext.text=user.nom!;
                         //  contr.editprenomtext.text=user.prenom!;
@@ -212,7 +212,7 @@ class _CreationArtState extends State<CreationArt> {
                       ),
                     DataCell(
                      
-                        Text(user.prenom!),
+                        Text(user.status!),
                         //  onTap: () {
                           //  contr.editprenomtext.text=user.prenom!;
                           //  contr.editnomtext.text=user.nom!;
@@ -239,8 +239,8 @@ class _CreationArtState extends State<CreationArt> {
                          onPressed: () async{  
                           showDialog(context: context, builder: (context)=>Dialog(child:UpdateUseer(user: user,) ,));
                           // Get.to(()=>UpdateUseer(user: user,));
-                          contr.editnomtext.text=user.nom!;
-                          contr.editprenomtext.text=user.prenom!;
+                          contr.editnomtext.text=user.role!;
+                          contr.editprenomtext.text=user.status!;
                           contr.update();
                          },
                       ),),
@@ -250,7 +250,7 @@ class _CreationArtState extends State<CreationArt> {
                         radius: 20,
                          backgroundColor: const Color.fromARGB(255, 233, 163, 158),
                        child: IconButton(icon: Icon(Icons.delete,color: Colors.red,),
-                         onPressed: () async{  contr.deleteUser(user.id.toString());
+                         onPressed: () async{  contr.deleteUser(user.iduser.toString());
                           contr.update();
                          },
                       ),),

@@ -17,6 +17,7 @@ class UserController extends GetxController{
 
   TextEditingController editnomtext=TextEditingController();
   TextEditingController editprenomtext=TextEditingController();
+   final contr = Get.put(UserController());
 
 
   //step 2 create methode
@@ -61,6 +62,26 @@ class UserController extends GetxController{
         if(data!= null){
           users.value = data;
           // searchList.value=data;
+         
+        }
+      }
+    }
+    catch(e){
+      Get.snackbar("error", "$e");
+
+    }
+     update();
+ }
+    getUs()async{
+      Uri url2 = Uri.parse(API.getArtiste);
+      try{
+        var result = await http.get(url2);
+        if(result.statusCode==200){
+        var data= List<User>.from(
+          jsonDecode(result.body).map((e)=>User.fromJson(e))).toList();
+        if(data!= null){
+          
+         searchList.value=data;
          
         }
       }
@@ -144,6 +165,7 @@ class UserController extends GetxController{
   }
 
 void onTextChanged(String text){
+  
     searchList.clear();
     if(text.isEmpty){
       users.forEach((element) {
